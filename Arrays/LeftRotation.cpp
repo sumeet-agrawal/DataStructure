@@ -27,7 +27,20 @@ int main()
 
         a[i] = a_item;
     }
-    rotate(a.begin(), a.begin()+d,a.end());
+    auto next = a.begin()+d;
+    auto middle = next;
+    auto first= a.begin();
+    auto last = a.end();
+    while(first!=next){
+        auto temp = *first;
+        *first = *next;
+        *next = temp;
+        first++;next++;
+        if(next== last) next = middle;
+        else if(first == middle) middle = next;
+    }
+
+    //rotate(a.begin(), a.begin()+d,a.end());
     for(int i=0;i<n;i++){
         cout<<a[i]<<" ";
     }
