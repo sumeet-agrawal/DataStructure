@@ -7,13 +7,20 @@ The Node struct is defined as follows:
 		Node* right;
 	}
 */
+vector<int> arr;
+void check(Node* root){
+    if(!root)
+        return;
+    check(root->left);
+    arr.push_back(root->data);
+    check(root->right);
+}
 	bool checkBST(Node* root) {
-		if(!root)
-            return true;
-        bool retl = true, retr = true;
-        if(root->left)
-            retl = (root->left->data<root->data) && checkBST(root->left);
-        if(root->right)
-            retr = (root->right->data>root->data) && checkBST(root->right);
-        return retl && retr;
+		check(root);
+        for(int i =1;i<arr.size();i++){
+            //cout<<arr[i]<<" ";
+            if(arr[i]<=arr[i-1])
+                return false;
+        }
+        return true;        
 	}
