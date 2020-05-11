@@ -8,14 +8,13 @@ vector<string> split_string(string);
  * Complete the solve function below.
  */
 int solve(vector<int> t) {
-    vector<int> ans(t.size()+1,0);
     int n = t.size();
+    vector<int> ans(n,0);    
     for(int i=0;i<n;i++){
         ans[(i+1)%n] += 1;
         ans[(i+1+n-t[i])%n] -= 1;
-        
     }
-    int max=INT_MIN,id,sum=0;
+    int max=-n,id,sum=0;
     for(int i=0;i<n;i++){
         sum+=ans[i];
         if(sum>max){
